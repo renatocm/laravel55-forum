@@ -14,7 +14,10 @@ class ThreadsController extends Controller
      */
     public function index()
     {
-        //
+        $threads = Thread::orderBy('fixed', 'desc')
+                            ->orderBy('updated_at', 'desc')
+                            ->paginate();
+        return response()->json($threads);
     }
 
     /**
